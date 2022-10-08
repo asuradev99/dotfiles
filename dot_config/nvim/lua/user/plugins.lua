@@ -60,10 +60,20 @@ return packer.startup(function(use)
 
   use { "williamboman/mason.nvim" }
   use { "williamboman/mason-lspconfig.nvim" }
+   use "neovim/nvim-lspconfig" -- Language server setup
+  use "ms-jpq/coq_nvim"
+  use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
+   use {
+       'numToStr/Comment.nvim',
+       config = function()
+           require('Comment').setup()
+       end
+   }
 
-  use "neovim/nvim-lspconfig" -- Language server setup
-
-
+  use "yamatsum/nvim-cursorline"
   --Rust Development
   use "rust-lang/rust.vim" -- Rust syntax highlighting
   use "simrat39/rust-tools.nvim" -- Rust IDE tools

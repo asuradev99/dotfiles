@@ -32,7 +32,8 @@ keymap("n", ";;", ";", opts)
 
 -- better closing tabs to fix nvim-tree staying open
 vim.keymap.set({"n", "v", "i"},"<C-s>", "<esc>:w<CR>", opts)
-
+keymap("n", "<S-w>", "b", opts)
+keymap("n", "<leader><CR>", ":terminal<CR>", opts)
 
 -- Swap : and ; to remove shift press
 -- Resize with arrows

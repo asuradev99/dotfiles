@@ -1,4 +1,4 @@
-vim.cmd [[set confirm]]
+
 
 require "user.plugins"
 require "user.config"
@@ -7,5 +7,4 @@ require "user.options"
 require "user.colorscheme"
 
 -- test
-
 
