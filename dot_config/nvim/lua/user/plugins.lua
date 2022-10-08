@@ -47,11 +47,17 @@ return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+   -- use {
+  --  'romgrk/barbar.nvim',
+   -- requires = {'kyazdani42/nvim-web-devicons'}
+   --}
   use {
-    'romgrk/barbar.nvim', -- titlebar for tabs
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
+      "akinsho/bufferline.nvim", 
+      tag = "v2.*", 
+      requires = 'kyazdani42/nvim-web-devicons'
+    }
+  use "moll/vim-bbye"
+
   use { "williamboman/mason.nvim" }
   use { "williamboman/mason-lspconfig.nvim" }
 
@@ -61,7 +67,13 @@ return packer.startup(function(use)
   --Rust Development
   use "rust-lang/rust.vim" -- Rust syntax highlighting
   use "simrat39/rust-tools.nvim" -- Rust IDE tools
+  
+  --Debugging
 
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use 'mfussenegger/nvim-dap' -- Rust debugging
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+ 
   -- Colorschemes && Syntax Highlighting
   use "Shatur/neovim-ayu" -- Colorscheme plugin
   use "nvim-treesitter/nvim-treesitter"

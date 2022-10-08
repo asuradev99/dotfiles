@@ -28,7 +28,7 @@ local options = {
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
   numberwidth = 4,                         -- set number column width to 2 {default 4}
-  signcolumn = "no",                      -- always show the sign column, otherwise it would shift the text each time
+  signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
@@ -41,7 +41,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-
+--test-- 
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
@@ -52,11 +52,3 @@ if vim.api.nvim_eval('exists("g:neovide")') then
     vim.cmd [[ set guifont=monospace:h11 ]] 
 end
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  nested = true,
-  callback = function()
-    if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-      vim.cmd "quit"
-    end
-  end
-})
