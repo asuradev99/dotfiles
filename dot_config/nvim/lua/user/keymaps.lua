@@ -10,7 +10,8 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Modes
+--  Modes
+--
 --   normal_mode = "n" askdjhkaj,
 --   insert_mode = "i",
 --   visual_mode = "v",
@@ -19,6 +20,9 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+    --remap Esc key to normal mode --
+    keymap("i","jk", "<Esc>", opts)
+    keymap("n","dl", "<Esc>d$" , opts)
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -104,3 +108,7 @@ vim.keymap.set('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
 vim.keymap.set('n', '<leader>dj', ':lua require"dap".down()<CR>zz')
 vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
 
+-- telescope commands
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})

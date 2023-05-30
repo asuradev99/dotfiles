@@ -1,4 +1,5 @@
 local fn = vim.fn
+
 -- vim.g.loaded = 1
 
 -- vim.g.loaded_netrwPlugin = 1
@@ -47,21 +48,19 @@ return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-   -- use {
-  --  'romgrk/barbar.nvim',
-   -- requires = {'kyazdani42/nvim-web-devicons'}
-   --}
+ 
   use {
       "akinsho/bufferline.nvim", 
       tag = "v2.*", 
       requires = 'kyazdani42/nvim-web-devicons'
-    }
-  use "moll/vim-bbye"
+  }
 
+  use "moll/vim-bbye"
+  use {'neovim/nvim-lspconfig'}
   use { "williamboman/mason.nvim" }
   use { "williamboman/mason-lspconfig.nvim" }
-   use "neovim/nvim-lspconfig" -- Language server setup
   use "ms-jpq/coq_nvim"
+ 
   use {
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
@@ -74,19 +73,35 @@ return packer.startup(function(use)
    }
 
   use "yamatsum/nvim-cursorline"
+  
   --Rust Development
-  use "rust-lang/rust.vim" -- Rust syntax highlighting
+   use "rust-lang/rust.vim" -- Rust syntax highlighting
   use "simrat39/rust-tools.nvim" -- Rust IDE tools
   
-  --Debugging
+  --completion
+    -- Completion framework:
+    use 'hrsh7th/nvim-cmp' 
 
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+    -- LSP completion source:
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- Useful completion sources:
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'hrsh7th/cmp-vsnip'                             
+    use 'hrsh7th/cmp-path'                              
+    use 'hrsh7th/cmp-buffer'                            
+    use 'hrsh7th/vim-vsnip'   
+
+    --fix lsp stuff
+  --Debugging
+   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use 'mfussenegger/nvim-dap' -- Rust debugging
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
  
   -- Colorschemes && Syntax Highlighting
-  use "Shatur/neovim-ayu" -- Colorscheme plugin
-  use "nvim-treesitter/nvim-treesitter"
+ use "Shatur/neovim-ayu" -- Colorscheme plugin
+   use "nvim-treesitter/nvim-treesitter"
 
   -- Status line 
   use {
@@ -101,7 +116,12 @@ return packer.startup(function(use)
         'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
   }
-        
+   
+  --telescope
+  use {
+  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  requires = { {'nvim-lua/plenary.nvim'} }
+  }
      -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
