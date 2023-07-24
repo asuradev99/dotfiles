@@ -11,6 +11,11 @@ return {
 				onSave = "true",
 			},
 		})
+		lspconfig.pyright.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "python" },
+		})
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions

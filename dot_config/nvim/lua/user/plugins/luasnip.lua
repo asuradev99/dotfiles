@@ -25,6 +25,10 @@ return {
 			return { os.date("%Y-%m-%d") }
 		end
 
+		ls.history = true
+		ls.region_check_events = "InsertEnter"
+		ls.delete_check_events = "TextChanged, InsertLeave"
+
 		ls.add_snippets(nil, {
 			all = {
 				snip({
@@ -48,6 +52,11 @@ return {
 					insert(0),
 				}),
 			},
+		})
+
+		ls.config.set_config({
+			region_check_events = "InsertEnter",
+			delete_check_events = "InsertLeave",
 		})
 	end,
 }

@@ -98,7 +98,6 @@ return {
 			})
 		end,
 	}, -- Colorscheme plugin
-	"nvim-treesitter/nvim-treesitter",
 
 	-- Status line
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

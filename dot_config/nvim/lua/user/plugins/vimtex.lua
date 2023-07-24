@@ -10,9 +10,8 @@ return {
             let g:tex_flavor='latex'
             let g:Tex_DefaultTargetFormat='pdf'
             let g:Tex_CompileRule_pdf='pdflatex'
- "           let g:vimtex_view_method = 'zathura'
+            let g:vimtex_view_method = 'zathura'
 
-            let g:vimtex_view_general_viewer = 'firefox'
 
         ]])
 	end,
