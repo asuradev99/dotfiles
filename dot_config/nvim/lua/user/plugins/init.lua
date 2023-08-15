@@ -63,6 +63,22 @@ return {
 
 	--formatter
 	"mhartington/formatter.nvim",
+	"NMAC427/guess-indent.nvim",
+	"gennaro-tedesco/nvim-peekup",
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			vim.opt.list = true
+			vim.opt.listchars:append("space:⋅")
+			vim.opt.listchars:append("eol:↴")
+
+			require("indent_blankline").setup({
+				space_char_blankline = " ",
+				show_current_context = true,
+				show_current_context_start = true,
+			})
+		end,
+	},
 	--completion
 	-- Completion framework:
 
@@ -83,7 +99,8 @@ return {
 	"rafamadriz/friendly-snippets",
 	--fix lsp stuff
 	--Debugging
-	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+	"nvim-lua/plenary.nvim",
+	"nvim-pack/nvim-spectre", -- Useful lua functions used ny lots of plugins
 	"mfussenegger/nvim-dap", -- Rust debugging
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
 

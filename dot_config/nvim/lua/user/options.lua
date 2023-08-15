@@ -74,6 +74,7 @@ vim.diagnostic.config({
 -- Show inlay_hints more frequently
 vim.cmd([[
 set signcolumn=yes
+set autochdir
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 augroup FormatAutogroup
   autocmd!

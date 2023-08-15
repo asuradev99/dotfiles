@@ -15,6 +15,15 @@ return {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "python" },
+			settings = {
+				python = {
+					analysis = {
+						autoSearchPaths = true,
+						diagnosticMode = "workspace",
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
 		})
 
 		-- Global mappings.
