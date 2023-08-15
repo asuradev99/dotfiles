@@ -1,6 +1,11 @@
 return {
 	"mhartington/formatter.nvim",
 	config = function()
+		--keybinds
+		vim.cmd([[
+            nnoremap <silent> <leader>f :Format<CR>
+            nnoremap <silent> <leader>F :FormatWrite<CR>
+        ]])
 		-- Utilities for creating configurations
 		local util = require("formatter.util")
 		-- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
@@ -42,6 +47,9 @@ return {
 					-- 		stdin = true,
 					-- 	}
 					-- end,
+				},
+				tex = {
+					require("formatter.filetypes.latex").latexindent,
 				},
 
 				-- Use the special "*" filetype for defining formatter configurations on
