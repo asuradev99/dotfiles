@@ -25,6 +25,9 @@ return {
 				},
 			},
 		})
+        lspconfig.typst_lsp.setup({
+
+        })
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions

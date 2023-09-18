@@ -76,10 +76,10 @@ vim.cmd([[
 set signcolumn=yes
 set autochdir
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost * FormatWrite
-augroup END
+" augroup FormatAutogroup
+"   autocmd!
+"   autocmd BufWritePost * FormatWrite
+" augroup END
 
 ]])
 
