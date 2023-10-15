@@ -40,7 +40,7 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		config = function()
-			require("nvim-autopairs").setup({})
+			require("nvim-autopairs").setup()
 		end,
 	},
 	{
@@ -65,21 +65,7 @@ return {
 	"mhartington/formatter.nvim",
 	"NMAC427/guess-indent.nvim",
 	"gennaro-tedesco/nvim-peekup",
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			vim.opt.list = true
-			vim.opt.listchars:append("space:⋅")
-			vim.opt.listchars:append("eol:↴")
-
-			require("indent_blankline").setup({
-				space_char_blankline = " ",
-				show_current_context = true,
-				show_current_context_start = true,
-			})
-		end,
-	},
-	--completion
+		--completion
 	-- Completion framework:
 
 	-- LSP completion source:
