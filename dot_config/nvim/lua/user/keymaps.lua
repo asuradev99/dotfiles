@@ -46,7 +46,7 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 keymap("n", "<S-l>", "<S-$>", opts)
-keymap("n", "<S-h>", "0", opts)
+keymap("n", "<S-h>", "_", opts)
 keymap("n", "<S-j>", "<C-d>", opts)
 keymap("n", "<S-k>", "<C-u>", opts)
 -- Move text up and down
@@ -74,8 +74,8 @@ keymap("x", "<A-k>", ":m .-2<CR>==", opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 

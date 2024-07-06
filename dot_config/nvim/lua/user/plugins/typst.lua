@@ -5,7 +5,8 @@ return {
 	config = function()
 		vim.cmd([[
             filetype indent on
-            let g:typst_pdf_viewer = "zathura"
+            au ColorScheme * hi Error NONE
+            let g:typst_pdf_viewer = "evince"
         ]])
 	end,
 }

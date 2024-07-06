@@ -8,6 +8,7 @@ return {
 	},
 
 	"moll/vim-bbye",
+	"nvim-neotest/nvim-nio",
 	{
 		"numToStr/Comment.nvim",
 		config = function()

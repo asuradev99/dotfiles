@@ -8,8 +8,9 @@ return {
 				vim.keymap.set("n", "{", "<cmd>AerialPrev<CR><cmd>AerialOpen<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "}", "<cmd>AerialNext<CR><cmd>AerialOpen<CR>", { buffer = bufnr })
 			end,
+            close_automatic_events = {"unfocus", "switch_buffer", "unsupported"}
 		})
 		-- You probably also want to set a keymap to toggle aerial
-		vim.keymap.set("n", "<leader>q", "<cmd>AerialToggle!<CR>")
+		vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 	end,
 }

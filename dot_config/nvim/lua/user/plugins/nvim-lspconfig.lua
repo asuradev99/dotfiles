@@ -1,5 +1,12 @@
 return {
 	"neovim/nvim-lspconfig",
+    opts = {
+        setup = {
+            rust_analyzer = function()
+                return true
+            end,
+        },
+    },
 	config = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		lspconfig = require("lspconfig")
@@ -26,6 +33,10 @@ return {
 			},
 		})
         lspconfig.typst_lsp.setup({
+
+        })
+
+        lspconfig.wgsl_analyzer.setup({
 
         })
 

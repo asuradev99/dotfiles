@@ -1,15 +1,16 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	config = function()
+        require 'nvim-treesitter.install'.compilers = { "clang" }
 		require("nvim-treesitter.configs").setup({
 			-- A list of parser names, or "all"
-			ensure_installed = { "c", "lua", "rust", "python" },
+			ensure_installed = { "c", "lua", "rust", "python", "latex", "wgsl"},
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
 
 			-- Automatically install missing parsers when entering buffer
-			auto_install = true,
+			auto_install = false,
 
 			-- List of parsers to ignore installing (for "all")
 			ignore_install = { "javascript" },
@@ -24,7 +25,6 @@ return {
 				-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
 				-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 				-- the name of the parser)
-
 				-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 100 KB
@@ -40,6 +40,13 @@ return {
 				additional_vim_regex_highlighting = true,
 			},
 		})
+
+		-- -- set up wgsl
+		--
+		-- vim.wo.foldmethod = "expr"
+		-- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+		-- vim.o.foldlevelstart = 99 -- do not close folds when a buffer is opened
+
 		-- require("scope").setup() -- buffer per tab extension setup
 		-- Set barbar's options
 	end,
