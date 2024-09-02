@@ -30,6 +30,10 @@ return {
 					require("formatter.filetypes.latex").latexindent,
 				},
 
+                cpp = {
+                    require("formatter.filetypes.cpp").uncrustify,
+                },
+
 				-- Use the special "*" filetype for defining formatter configurations on
 				-- any filetype
 				["*"] = {

@@ -11,6 +11,6 @@ return {
             close_automatic_events = {"unfocus", "switch_buffer", "unsupported"}
 		})
 		-- You probably also want to set a keymap to toggle aerial
-		vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+		vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle!<CR>")
 	end,
 }

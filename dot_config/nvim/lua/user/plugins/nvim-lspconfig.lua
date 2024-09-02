@@ -1,12 +1,13 @@
 return {
 	"neovim/nvim-lspconfig",
-    opts = {
-        setup = {
-            rust_analyzer = function()
-                return true
-            end,
-        },
-    },
+	opts = {
+		-- setup = {
+		--     rust_analyzer = function()
+		--         return true
+		--     end,
+		-- },
+	},
+
 	config = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		lspconfig = require("lspconfig")
@@ -32,13 +33,22 @@ return {
 				},
 			},
 		})
-        lspconfig.typst_lsp.setup({
+		lspconfig.typst_lsp.setup({})
 
-        })
+		lspconfig.wgsl_analyzer.setup({
+			on_attach = on_attach,
+			settings = {
 
-        lspconfig.wgsl_analyzer.setup({
-
-        })
+				["rust-analyzer"] = {
+					cargo = {
+						target = "wasm32",
+					},
+					procMacro = {
+						enable = true,
+					},
+				},
+			},
+		})
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -60,7 +70,7 @@ return {
 				local opts = { buffer = ev.buf }
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		        vim.keymap.set("n", "<space>a", vim.lsp.buf.hover, opts)
+				vim.keymap.set("n", "<space>a", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts)
 				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
