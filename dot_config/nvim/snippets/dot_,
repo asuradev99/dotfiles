@@ -1,0 +1,7 @@
+{
+    "Vector": {
+        "prefix": ["vec"], 
+        "body": ["\\vect{$1}"],
+        "description": "Custom vector notation"
+    }
+}

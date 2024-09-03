@@ -20,3 +20,5 @@ return {
         ]])
 	end,
 }
+
+-- If on laptop:  let g:vimtex_view_method = 'zathura'

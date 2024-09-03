@@ -1,0 +1,29 @@
+{
+	"snip1": {
+		"prefix": "all1",
+        "body": "asdlkasldkjasldj",
+        "description": "test"
+	},
+	"snip2": {
+		"prefix": "all2",
+		"body": "asdasdasdalsd",
+        "description": "test"
+    }, 
+    "Vector": {
+        "prefix": "ve", 
+        "body": "\\vect{$1}$0"
+    },
+    "2D Column Vector": {
+        "prefix": "cv2", 
+        "body": "\\begin{pmatrix} $1 \\\\\\ $2 \\\\\\ \\end{pmatrix}$0"
+    },
+
+    "3D Column Vector": {
+        "prefix": "cv3", 
+        "body": "\\begin{pmatrix} $1 \\\\\\ $2 \\\\\\ $3 \\\\\\ \\end{pmatrix}$0"
+    },
+    "3D Row Vector": {
+        "prefix": "rv3", 
+        "body": "\\begin{pmatrix} $1 & $2 & $3 \\end{pmatrix}$0"
+    }
+}
