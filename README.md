@@ -29,7 +29,7 @@
 
 Now proceed with the instructions in the steps below: 
 
-### Starting from Scratch with Bootable USB
+### Installation Starting from Scratch with Bootable USB
 
 Here is a complete set of instructions to set up an Arch + btrfs install with my config files: 
 
@@ -117,14 +117,14 @@ mount /dev/sda1 /mnt/boot/efi
 
 Make sure everything is mounted correctly with `lsblk`.
 
-#### Package and Kernel Installation 
+#### Base and Kernel Installation 
 
 6. Select mirror servers in `/etc/pacman.d/mirrorlist`
 
 7. Install essential packages on mounted system: 
 
 ```
-pacstrap -K /mnt base linux linux-firmware {amd/intel}-ucode linux-firmware networkmanager vim man
+pacstrap -K /mnt base linux linux-firmware {amd/intel}-ucode linux-firmware networkmanager vim man sudo os-prober btrfs-progs
 ```
 
 8. Generate `fstab` file: 
@@ -133,6 +133,127 @@ pacstrap -K /mnt base linux linux-firmware {amd/intel}-ucode linux-firmware netw
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
+9. Make sure you are chrooted for the following instructions: 
+
+```
+arch-chroot /mnt
+```
+
+Now follow steps `3.3` through `3.7` in the Arch Installation Guide. 
+
+10. Follow section `2.1` on the [Arch Linux Grub Wiki](https://wiki.archlinux.org/title/GRUB) to set up the 
+barebones bootloader installation. Then, run 
+
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+while in arch-chroot to generate the initial configuration file. 
+
+
+11. Finally, reboot into a minimal Linux installation. 
+
+
+
+### Post-Installation Instructions
+
+#### SurfaceLinux Post-Installation 
+
+The following insructions are adapted from [](https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup)
+
+First you need to import the keys we use to sign packages.
+
+```bash
+curl -s https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
+    | sudo pacman-key --add -
+```
+
+It is recommended to check and verify the fingerprint of the key.
+
+```bash
+sudo pacman-key --finger 56C464BAAC421453
+```
+
+Finally, you must locally sign the imported key.
+
+```bash
+sudo pacman-key --lsign-key 56C464BAAC421453
+```
+
+You can now add the repository by adding the following to the end of `/etc/pacman.conf`
+
+```ini
+[linux-surface]
+Server = https://pkg.surfacelinux.com/arch/
+```
+
+After doing that you need to refresh the repository metadata, then you can install the
+linux-surface kernel and its dependencies.
+
+**NOTE:** `libwacom-surface` is packaged through the AUR, so you need to install it from there.
+
+```bash
+sudo pacman -Syu
+```
+```bash
+sudo pacman -S linux-surface linux-surface-headers iptsd
+```
+
+Now continue with the general instructions. 
+
+#### Grub and BTRFS snapshots with Timeshift
+
+12. To enable os-prober, edit `/etc/default/grub` and uncomment the line 
+
+```
+GRUB_DISABLE_OS_PROBER=false
+```
+
+Additionally, add these two lines if they are not already uncommeneted: 
+
+```
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
+# WARNING: if you get an error with Grub, could be because of the second line
+
+```
+
+13. Next, make sure the EFI partition containing the Windows Boot Manager `bootmgfw.efi` is mounted. 
+
+14. Install `timeshift` and `grub-btrfs` and enable the service with 
+
+```
+sudo systemctl enable grub-btrfsd
+```
+
+15. Following [](https://wiki.archlinux.org/Timeshift), change the location that btrfsd looks for snapshots 
+to be compatible with Timeshift: 
+
+```
+systemctl edit --full grub-btrfsd
+```
+Then replace `grub-btrfsd --syslog /.snapshots` with `grub-btrfsd --syslog -t`
+
+Then, create a test snapshot: `timeshift --create` (might not be feasible without DE)
+
+16. Finally, update the grub configuration: 
+
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+Then reboot, checking to see if a Windows entry is created in the configuration file, as well as detecting the Linux-surface kernel
+if you are using a Surface Pro, as well as if the test snapshot was created and available to boot into in Grub.
+
+
+#### Package and Desktop Environment Installation
+    
+17. 
+
+
+#### Config File Installaton 
+
+17. Install `chezmoi`
 
 
 
